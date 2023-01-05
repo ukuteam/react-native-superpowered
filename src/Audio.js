@@ -1,12 +1,16 @@
 import { 
   NativeModules,
+  Platform
 } from 'react-native'
 
 const { RNSuperpowered } = NativeModules
 
 class Audio {
   constructor(filePath, sampleRate) {
-    RNSuperpowered.initializeAudio(filePath, sampleRate)
+    console.log('initAudio', Platform.OS)
+    if (Platform.OS === 'android') {
+      RNSuperpowered.initializeAudio(filePath, sampleRate)
+    }
     this._initialized = true
   }
 
